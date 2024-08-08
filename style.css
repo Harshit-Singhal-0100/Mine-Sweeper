@@ -1,0 +1,244 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9; /* Light background for a clean look */
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1e90ff; /* Header accent color */
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-board {
+    display: grid;
+    gap: 8px; /* Increased gap for better separation */
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    background-color: #e0e0e0; /* Light tile color */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    background-image: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+}
+
+.tile:hover {
+    background-color: #d0d0d0;
+    background-image: linear-gradient(to bottom, #d0d0d0, #c0c0c0);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.tile.revealed {
+    background-color: #a3d9a5; /* Bluish-green tone for revealed tiles */
+    background-image: linear-gradient(to bottom, #a3d9a5, #8fcf8f);
+    color: #2c3e50; /* Darker text color for better readability */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for better contrast */
+    animation: reveal 0.3s ease;
+}
+
+.tile.bomb {
+    background-color: #f44336; /* Intense red for bomb tiles */
+    color: #fff;
+    background-image: linear-gradient(to bottom, #f44336, #d32f2f);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+    animation: bomb 0.4s ease;
+}
+#controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#controls button {
+    margin: 5px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#controls button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#settings label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#settings input {
+    margin-right: 20px;
+    padding: 8px;
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#settings button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745; /* Green button color */
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#settings button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes reveal {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bomb {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.dark-mode {
+    background-color: #121212; /* Darker background for better contrast */
+    color: #e0e0e0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode #game-board {
+    background-color: #1f1f1f;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.dark-mode .tile {
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+    border: 1px solid #444; /* Subtle border to enhance tile separation */
+    background-image: linear-gradient(to bottom, #2e2e2e, #1e1e1e);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .tile:hover {
+    background-color: #3a3a3a;
+    background-image: linear-gradient(to bottom, #3a3a3a, #2c2c2c);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .tile.revealed {
+    background-color: #4a90e2; /* Bluish tone for revealed tiles */
+    background-image: linear-gradient(to bottom, #4a90e2, #357abd);
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .tile.bomb {
+    background-color: #ff5252; /* Bright red for bomb tiles */
+    background-image: linear-gradient(to bottom, #ff5252, #d32f2f);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .tile.flagged {
+    background-color: #ffab40; /* Orange for flagged tiles */
+    background-image: linear-gradient(to bottom, #ffab40, #ff9800);
+    color: #fff;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode #controls button,
+.dark-mode #settings button {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode #controls button:hover,
+.dark-mode #settings button:hover {
+    background-color: #444;
+}
+
+@media (max-width: 768px) {
+    #game-board {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    #game-board {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 320px) {
+    #game-board {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
